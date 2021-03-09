@@ -7,6 +7,7 @@ import Aside from '../Aside/Aside';
 import View from '../pages/View';
 // import CreateInvoice from '../CreateInvoice/CreateInvoice';
 import InvoicesList from '../InvoicesList/InvoicesList';
+import Button from '../Button/Button';
 
 function App() {
   const [invoices, setInvoices] = useState([]);
@@ -34,9 +35,7 @@ function App() {
               </h2>
               <div className="info__actions">
                 <div>Filter</div>
-                <button>
-                  <span></span>New
-                </button>
+                <Button modifier="black">Save as Draft</Button>
               </div>
             </section>
             <InvoicesList invoices={invoices} />
