@@ -11,6 +11,7 @@ import Button from '../Button/Button';
 
 function App() {
   const [invoices, setInvoices] = useState([]);
+  const [darkTheme, setDarkTheme] = useState(false);
 
   useEffect(() => {
     axios
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <div className="app">
-      <Aside />
+      <Aside darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
       <main className="main">
         <Router>
           <Route exact path="/">

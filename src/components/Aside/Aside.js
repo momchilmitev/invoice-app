@@ -4,7 +4,7 @@ import avatar from '../../assets/images/avatar.jpg';
 import moon from '../../assets/icons/icon-moon.svg';
 import sun from '../../assets/icons/icon-sun.svg';
 
-const Aside = () => {
+const Aside = ({ darkTheme, setDarkTheme }) => {
   return (
     <aside className="aside">
       <div className="logo">
@@ -15,7 +15,11 @@ const Aside = () => {
       </div>
       <div className="aside__images">
         <div className="aside__icon">
-          <img src={moon} alt="theme-icon" />
+          <img
+            src={darkTheme ? moon : sun}
+            alt="theme-icon"
+            onClick={() => setDarkTheme(!darkTheme)}
+          />
         </div>
         <div className="aside__avatar">
           <img src={avatar} alt="avatar" />
