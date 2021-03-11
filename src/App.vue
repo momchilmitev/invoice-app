@@ -1,32 +1,102 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div id="app" class="app">
+    <Aside @theme-changed="switchTheme" />
+    {{ darkTheme }}
+    <main class="main">
+      <router-view />
+    </main>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Aside from "./components/Aside";
+
+export default {
+  components: {
+    Aside,
+  },
+  data() {
+    return {
+      darkTheme: false,
+    };
+  },
+  methods: {
+    switchTheme() {
+      this.$data.darkTheme = !this.$data.darkTheme;
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap");
+
+:root {
+  --dark-purple: #7c5dfa;
+  --light-purple: #9277ff;
+  --dark-gray: #1e2139;
+  --gray: #252945;
+  --light-blue: #dfe3fa;
+  --gray-blue: #888eb0;
+  --blue: #7e88c3;
+  --black: #0c0e16;
+  --red: #ec5757;
+  --pink: #fc9798;
+  --white: #f8f8fb;
+  --dark: #141625;
 }
 
-#nav {
-  padding: 30px;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Spartan", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.app {
+  height: 100vh;
+  overflow: scroll;
+  background-color: var(--white);
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.main {
+  padding: 0 24px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  & > h2 {
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -0.625px;
+
+    & > span {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+      letter-spacing: -0.25px;
+      color: var(--gray-blue);
+    }
+  }
+
+  &__actions {
+    display: flex;
+  }
 }
 </style>
