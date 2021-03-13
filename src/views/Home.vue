@@ -1,15 +1,24 @@
 <template>
-  <div class="home">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-  </div>
+  <invoice-list :invoices="invoices"></invoice-list>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue';
+import InvoiceList from "../components/InvoiceList.vue";
 
 export default {
-  name: 'Home',
-  components: {},
+  name: "Home",
+  components: {
+    InvoiceList,
+  },
+  data() {
+    return {
+      invoices: null,
+    };
+  },
+  created() {
+    this.axios.get("http://localhost:3001/invoices").then((res) => {
+      this.invoices = res.data;
+    });
+  },
 };
 </script>
