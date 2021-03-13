@@ -6,7 +6,7 @@
         <span>{{ invoices.length ? invoices.length : 0 }} invoices</span>
       </h2>
       <div class="info__actions">
-        <div>Filter</div>
+        <InvoiceFilter></InvoiceFilter>
         <Button
           text="New"
           modiffier="create"
@@ -14,13 +14,14 @@
         ></Button>
       </div>
     </section>
-    <invoice-list :invoices="invoices"></invoice-list>
+    <invoice-list :invoices="filteredInvoices"></invoice-list>
   </div>
 </template>
 
 <script>
 import InvoiceList from "../components/InvoiceList.vue";
 import Button from "../components/Button";
+import InvoiceFilter from "../components/InvoiceFilter";
 import { Event } from "../utils/Event";
 
 export default {
@@ -28,10 +29,12 @@ export default {
   components: {
     InvoiceList,
     Button,
+    InvoiceFilter,
   },
   data() {
     return {
       invoices: [],
+      filters: [],
     };
   },
   created() {
@@ -42,6 +45,21 @@ export default {
     Event.listen("createInvoice", () => {
       alert("create");
     });
+
+    Event.listen("filter", (filters) => {
+      this.filters = filters;
+    });
+  },
+  computed: {
+    filteredInvoices() {
+      if (this.filters.length > 0) {
+        return this.invoices.filter((invoice) =>
+          this.filters.includes(invoice.status),
+        );
+      } else {
+        return this.invoices;
+      }
+    },
   },
 };
 </script>
@@ -74,6 +92,7 @@ export default {
 
   &__actions {
     display: flex;
+    align-items: center;
   }
 }
 </style>
