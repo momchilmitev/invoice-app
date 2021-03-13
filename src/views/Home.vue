@@ -3,11 +3,15 @@
     <section class="info">
       <h2>
         Invoices
-        <span>{{ invoices.length }} invoices</span>
+        <span>{{ invoices.length ? invoices.length : 0 }} invoices</span>
       </h2>
       <div class="info__actions">
         <div>Filter</div>
-        <button>New</button>
+        <Button
+          text="New"
+          modiffier="create"
+          eventName="createInvoice"
+        ></Button>
       </div>
     </section>
     <invoice-list :invoices="invoices"></invoice-list>
@@ -16,20 +20,27 @@
 
 <script>
 import InvoiceList from "../components/InvoiceList.vue";
+import Button from "../components/Button";
+import { Event } from "../utils/Event";
 
 export default {
   name: "Home",
   components: {
     InvoiceList,
+    Button,
   },
   data() {
     return {
-      invoices: null,
+      invoices: [],
     };
   },
   created() {
     this.axios.get("http://localhost:3001/invoices").then((res) => {
       this.invoices = res.data;
+    });
+
+    Event.listen("createInvoice", () => {
+      alert("create");
     });
   },
 };
