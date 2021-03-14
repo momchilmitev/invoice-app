@@ -58,6 +58,25 @@ export default {
     }
   }
 
+  &--back {
+    position: relative;
+    margin-left: 5px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 12px;
+      border-radius: 50%;
+      background: url("../assets/icons/icon-arrow-left.svg");
+      background-repeat: no-repeat;
+      left: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
   &--purple {
     padding: 17px 24px;
     background-color: var(--dark-purple);

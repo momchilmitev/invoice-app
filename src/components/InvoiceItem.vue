@@ -1,5 +1,8 @@
 <template>
-  <router-link class="link" to="/view">
+  <router-link
+    class="link"
+    :to="{ name: 'View', params: { id: currentInvoice._id } }"
+  >
     <article class="item">
       <p class="item__id">#{{ invoice.id }}</p>
       <p class="item__date">{{ invoice.paymentDue }}</p>
@@ -26,6 +29,7 @@ export default {
     return {
       rightArrow,
       statusClass: `item__status--${this.$props.invoice.status}`,
+      currentInvoice: this.$props.invoice,
     };
   },
 };

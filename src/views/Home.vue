@@ -38,7 +38,7 @@ export default {
     };
   },
   created() {
-    this.axios.get("http://localhost:3001/invoices").then((res) => {
+    this.axios.get("http://localhost:3001/invoices").then(res => {
       this.invoices = res.data;
     });
 
@@ -46,15 +46,15 @@ export default {
       alert("create");
     });
 
-    Event.listen("filter", (filters) => {
+    Event.listen("filter", filters => {
       this.filters = filters;
     });
   },
   computed: {
     filteredInvoices() {
       if (this.filters.length > 0) {
-        return this.invoices.filter((invoice) =>
-          this.filters.includes(invoice.status),
+        return this.invoices.filter(invoice =>
+          this.filters.includes(invoice.status)
         );
       } else {
         return this.invoices;

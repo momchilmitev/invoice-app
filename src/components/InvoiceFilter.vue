@@ -28,7 +28,7 @@ export default {
   methods: {
     addFilter(filter) {
       if (this.filters.includes(filter)) {
-        this.filters = this.filters.filter((f) => f !== filter);
+        this.filters = this.filters.filter(f => f !== filter);
       } else {
         this.filters.push(filter);
       }
