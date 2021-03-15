@@ -1,0 +1,61 @@
+<template>
+  <div class="spinner">
+    <div></div>
+    <div></div>
+  </div>
+</template>
+
+<style lang="scss">
+.spinner {
+  width: 50px;
+  height: 50px;
+  position: relative;
+
+  & div {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 6px solid transparent;
+    border-top-color: #ad60f5;
+    border-radius: 50%;
+    animation: sideOne 1.2s linear infinite;
+  }
+
+  & div:nth-child(2) {
+    border: 6px solid transparent;
+    border-bottom-color: #ad60f5;
+    animation: sideTwo 1.2s linear infinite;
+  }
+}
+
+@keyframes sideOne {
+  0% {
+    transform: rotate(0deg);
+    border-width: 6px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 1px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 6px;
+  }
+}
+
+@keyframes sideTwo {
+  0% {
+    transform: rotate(0deg);
+    border-width: 1px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 6px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 1px;
+  }
+}
+</style>
