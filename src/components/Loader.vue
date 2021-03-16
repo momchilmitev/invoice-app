@@ -10,6 +10,7 @@
   width: 50px;
   height: 50px;
   position: relative;
+  margin: 0 auto;
 
   & div {
     box-sizing: border-box;

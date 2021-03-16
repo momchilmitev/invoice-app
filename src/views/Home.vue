@@ -14,7 +14,9 @@
         ></Button>
       </div>
     </section>
-    <invoice-list :invoices="filteredInvoices"></invoice-list>
+    <Loader v-if="loading"></Loader>
+    <NoInvoices v-else-if="invoices.length === 0"></NoInvoices>
+    <invoice-list v-else :invoices="filteredInvoices"></invoice-list>
   </div>
 </template>
 
@@ -22,6 +24,8 @@
 import InvoiceList from "../components/InvoiceList.vue";
 import Button from "../components/Button";
 import InvoiceFilter from "../components/InvoiceFilter";
+import Loader from "../components/Loader";
+import NoInvoices from "../components/NoInvoices";
 import { Event } from "../utils/Event";
 
 export default {
@@ -30,17 +34,28 @@ export default {
     InvoiceList,
     Button,
     InvoiceFilter,
+    Loader,
+    NoInvoices,
   },
   data() {
     return {
       invoices: [],
       filters: [],
+      loading: null,
     };
   },
   created() {
-    this.axios.get("http://localhost:3001/invoices").then(res => {
-      this.invoices = res.data;
-    });
+    this.loading = true;
+    this.axios
+      .get("http://localhost:3001/invoices")
+      .then(res => {
+        this.invoices = res.data;
+        this.loading = false;
+      })
+      .catch(e => {
+        this.loading = false;
+        console.log(e.message);
+      });
 
     Event.listen("createInvoice", () => {
       alert("create");
