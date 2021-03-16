@@ -81,16 +81,19 @@
         </div>
       </div>
     </article>
-    <div v-else>Loading...</div>
+    <Loader v-else></Loader>
   </div>
 </template>
 
 <script>
 import Button from "./Button";
+import Loader from "./Loader";
+
 export default {
   props: ["invoiceId"],
   components: {
     Button,
+    Loader,
   },
   data() {
     return {
