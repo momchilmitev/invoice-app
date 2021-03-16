@@ -21,7 +21,7 @@
       </div>
       <div class="invoice__main">
         <div class="invoice__details">
-          <div>
+          <div class="invoice__id">
             <div>
               <h3>#{{ invoice.id }}</h3>
               <p>{{ invoice.description }}</p>
@@ -33,7 +33,7 @@
               <p>{{ invoice.senderAddress.country }}</p>
             </div>
           </div>
-          <div>
+          <div class="invoice__date">
             <div>
               <p>Invoice Date</p>
               <h3>{{ invoice.createdAt }}</h3>
@@ -292,6 +292,24 @@ export default {
       line-height: 15px;
       letter-spacing: -0.25px;
       color: #0c0e16;
+    }
+  }
+
+  &__id {
+    & div:nth-child(1),
+    div:nth-child(2) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__date {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    & h3 {
+      margin-top: 12px;
+      margin-bottom: 12px;
     }
   }
 }
