@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { Event } from "../utils/Event";
 import Button from "./Button";
 import Loader from "./Loader";
 
@@ -104,16 +105,34 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
+    getInvoice() {
+      this.axios
+        .get(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
+        .then(res => (this.invoice = res.data));
+    },
+    markAsPaid() {
+      this.axios
+        .patch(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
+        .then(() => {
+          this.getInvoice();
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
   },
   computed: {
     statusClass() {
       return `item__status--${this.invoice.status}`;
     },
   },
+  created() {
+    Event.listen("paid", () => {
+      this.markAsPaid();
+    });
+  },
   mounted() {
-    this.axios
-      .get(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
-      .then(res => (this.invoice = res.data));
+    this.getInvoice();
   },
 };
 </script>
