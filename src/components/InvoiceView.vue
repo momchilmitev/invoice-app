@@ -120,6 +120,12 @@ export default {
           console.log(e);
         });
     },
+    deleteInvoice() {
+      this.axios
+        .delete(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
+        .then(res => console.log(res))
+        .catch(e => console.log(e));
+    },
   },
   computed: {
     statusClass() {
@@ -129,6 +135,11 @@ export default {
   created() {
     Event.listen("paid", () => {
       this.markAsPaid();
+    });
+
+    Event.listen("delete", () => {
+      this.deleteInvoice();
+      this.$router.push("/");
     });
   },
   mounted() {
