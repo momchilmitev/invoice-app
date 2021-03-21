@@ -11,7 +11,7 @@
         </div>
         <div class="invoice__actions">
           <Button text="Edit" modiffier="white" eventName="edit"></Button>
-          <Button text="Delete" modiffier="red" eventName="delete"></Button>
+          <Button text="Delete" modiffier="red" eventName="open-modal"></Button>
           <Button
             text="Mark as Paid"
             modiffier="purple"
@@ -82,6 +82,7 @@
       </div>
     </article>
     <Loader v-else></Loader>
+    <DeleteModal v-if="isOpen" :invoiceId="invoice.id"></DeleteModal>
   </div>
 </template>
 
@@ -89,16 +90,19 @@
 import { Event } from "../utils/Event";
 import Button from "./Button";
 import Loader from "./Loader";
+import DeleteModal from "./DeleteModal";
 
 export default {
   props: ["invoiceId"],
   components: {
     Button,
     Loader,
+    DeleteModal,
   },
   data() {
     return {
       invoice: null,
+      isOpen: false,
     };
   },
   methods: {
@@ -123,7 +127,7 @@ export default {
     deleteInvoice() {
       this.axios
         .delete(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
-        .then(res => console.log(res))
+        .then(() => this.$router.push("/"))
         .catch(e => console.log(e));
     },
   },
@@ -137,9 +141,16 @@ export default {
       this.markAsPaid();
     });
 
+    Event.listen("open-modal", () => {
+      this.isOpen = true;
+    });
+
+    Event.listen("cencel", () => {
+      this.isOpen = false;
+    });
+
     Event.listen("delete", () => {
       this.deleteInvoice();
-      this.$router.push("/");
     });
   },
   mounted() {
