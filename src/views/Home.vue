@@ -1,5 +1,6 @@
 <template>
   <div>
+    <InvoiceForm v-if="showForm" type="new"></InvoiceForm>
     <section class="info">
       <h2>
         Invoices
@@ -26,6 +27,7 @@ import Button from "../components/Button";
 import InvoiceFilter from "../components/InvoiceFilter";
 import Loader from "../components/Loader";
 import NoInvoices from "../components/NoInvoices";
+import InvoiceForm from "../components/InvoiceForm";
 import { Event } from "../utils/Event";
 
 export default {
@@ -36,12 +38,14 @@ export default {
     InvoiceFilter,
     Loader,
     NoInvoices,
+    InvoiceForm,
   },
   data() {
     return {
       invoices: [],
       filters: [],
       loading: null,
+      showForm: false,
     };
   },
   created() {
@@ -58,11 +62,19 @@ export default {
       });
 
     Event.listen("createInvoice", () => {
-      alert("create");
+      this.showForm = true;
     });
 
     Event.listen("filter", filters => {
       this.filters = filters;
+    });
+
+    Event.listen("createInvoice", () => {
+      this.showForm = true;
+    });
+
+    Event.listen("cencel", () => {
+      this.showForm = false;
     });
   },
   computed: {
