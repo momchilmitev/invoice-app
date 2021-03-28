@@ -71,11 +71,16 @@
         <span>Total</span>
         <span>Delete</span>
       </div>
-      <div v-for="item in invoiceForm.items" :key="item.name">
+      <div
+        class="item__container"
+        v-for="item in invoiceForm.items"
+        :key="item.name"
+      >
         <span>{{ item.name }}</span>
         <span>{{ item.quantity }}</span>
         <span>{{ item.price }}</span>
         <span>{{ item.total }}</span>
+        <img class="item__icon" :src="deleteIcon" alt="delete icon" />
       </div>
       <form class="item__form" @submit.prevent="">
         <input type="text" placeholder="Item Name" v-model="itemForm.name" />
@@ -116,6 +121,7 @@
 import { Event } from "../utils/Event";
 import Button from "./Button";
 import Form from "../utils/Form";
+import deleteIcon from "../assets/icons/icon-delete.svg";
 
 export default {
   props: ["type"],
@@ -124,6 +130,7 @@ export default {
   },
   data() {
     return {
+      deleteIcon,
       invoiceForm: new Form({
         id: "",
         createdAt: "",
@@ -311,6 +318,26 @@ export default {
   & > .btn {
     margin-top: 28px;
     flex: 1 1 100%;
+  }
+}
+
+.item__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin: 15px 0;
+  background-color: #f9fafe;
+  padding: 10px;
+  border-radius: 4px;
+
+  & > span {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    color: #7c5dfa;
   }
 }
 </style>
