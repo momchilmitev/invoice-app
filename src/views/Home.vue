@@ -49,17 +49,7 @@ export default {
     };
   },
   created() {
-    this.loading = true;
-    this.axios
-      .get("http://localhost:3001/invoices")
-      .then(res => {
-        this.invoices = res.data;
-        this.loading = false;
-      })
-      .catch(e => {
-        this.loading = false;
-        console.log(e.message);
-      });
+    this.fetchInvoices();
 
     Event.listen("createInvoice", () => {
       this.showForm = true;
@@ -76,6 +66,26 @@ export default {
     Event.listen("cencel", () => {
       this.showForm = false;
     });
+
+    Event.listen("created", () => {
+      this.showForm = false;
+      this.fetchInvoices();
+    });
+  },
+  methods: {
+    fetchInvoices() {
+      this.loading = true;
+      this.axios
+        .get("http://localhost:3001/invoices")
+        .then(res => {
+          this.invoices = res.data;
+          this.loading = false;
+        })
+        .catch(e => {
+          this.loading = false;
+          console.log(e.message);
+        });
+    },
   },
   computed: {
     filteredInvoices() {

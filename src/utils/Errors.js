@@ -4,7 +4,7 @@ export default class Errors {
   }
 
   has(field) {
-    return this.errors.hasOwnProperty(field);
+    return Object.prototype.hasOwnProperty.call(this.errors, field);
   }
 
   any() {

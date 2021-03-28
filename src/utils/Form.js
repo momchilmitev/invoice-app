@@ -29,45 +29,45 @@ export default class Form {
     this.errors.clear();
   }
 
-  post(url) {
-    return this.submit("post", url);
-  }
+  // post(url) {
+  //   return this.submit("post", url);
+  // }
 
-  put(url) {
-    return this.submit("put", url);
-  }
+  // put(url) {
+  //   return this.submit("put", url);
+  // }
 
-  patch(url) {
-    return this.submit("patch", url);
-  }
+  // patch(url) {
+  //   return this.submit("patch", url);
+  // }
 
-  delete(url) {
-    return this.submit("delete", url);
-  }
+  // delete(url) {
+  //   return this.submit("delete", url);
+  // }
 
-  submit(requestType, url) {
-    return new Promise((resolve, reject) => {
-      axios[requestType](url, this.data())
-        .then(response => {
-          this.onSuccess(response.data);
+  // submit(requestType, url) {
+  //   return new Promise((resolve, reject) => {
+  //     this.axios[requestType](url, this.data())
+  //       .then(response => {
+  //         this.onSuccess(response.data);
 
-          resolve(response.data);
-        })
-        .catch(error => {
-          this.onFail(error.response.data);
+  //         resolve(response.data);
+  //       })
+  //       .catch(error => {
+  //         this.onFail(error.response.data);
 
-          reject(error.response.data);
-        });
-    });
-  }
+  //         reject(error.response.data);
+  //       });
+  //   });
+  // }
 
-  onSuccess(data) {
-    alert(data.message);
+  // onSuccess(data) {
+  //   alert(data.message);
 
-    this.reset();
-  }
+  //   this.reset();
+  // }
 
-  onFail(errors) {
-    this.errors.record(errors);
-  }
+  // onFail(errors) {
+  //   this.errors.record(errors);
+  // }
 }

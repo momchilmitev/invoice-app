@@ -1,58 +1,58 @@
 <template>
   <section class="form__wrapper">
     <h1 class="form__title">New Invoice</h1>
-    <form class="form__container">
+    <form class="form__container" @submit.prevent="submitForm">
       <h4>Bill From</h4>
       <div>
         <p>Street Address</p>
-        <input type="text" name="street" />
+        <input type="text" v-model="invoiceForm.senderAddress.street" />
       </div>
       <div class="form__address-details">
         <div>
           <p>City</p>
-          <input type="text" name="city" />
+          <input type="text" v-model="invoiceForm.senderAddress.city" />
         </div>
         <div>
           <p>Post Code</p>
-          <input type="text" name="post-code" />
+          <input type="text" v-model="invoiceForm.senderAddress.postCode" />
         </div>
         <div>
           <p>Country</p>
-          <input type="text" name="country" />
+          <input type="text" v-model="invoiceForm.senderAddress.country" />
         </div>
       </div>
       <h4>Bill To</h4>
       <div>
         <p>Client Name</p>
-        <input type="text" name="client-name" />
+        <input type="text" v-model="invoiceForm.clientName" />
       </div>
       <div>
         <p>Client Email</p>
-        <input type="text" name="client-email" />
+        <input type="text" v-model="invoiceForm.clientEmail" />
       </div>
       <div>
         <p>Street Address</p>
-        <input type="text" name="client-street" />
+        <input type="text" v-model="invoiceForm.clientAddress.street" />
       </div>
       <div class="form__address-details">
         <div>
           <p>City</p>
-          <input type="text" name="client-city" />
+          <input type="text" v-model="invoiceForm.clientAddress.city" />
         </div>
         <div>
           <p>Post Code</p>
-          <input type="text" name="client-post-code" />
+          <input type="text" v-model="invoiceForm.clientAddress.postCode" />
         </div>
         <div>
           <p>Country</p>
-          <input type="text" name="client-country" />
+          <input type="text" v-model="invoiceForm.clientAddress.country" />
         </div>
       </div>
       <div>
         <p>Invoice Date</p>
-        <input type="date" name="invoice-date" />
+        <input type="date" v-model="invoiceForm.createdAt" />
         <p>Payment Terms</p>
-        <select name="payment-terms">
+        <select v-model="invoiceForm.paymentTerms">
           <option value="1">Next 1 Day</option>
           <option value="7">Next 7 Day</option>
           <option value="14">Next 14 Day</option>
@@ -61,7 +61,7 @@
       </div>
       <div>
         <p>Project Description</p>
-        <input type="text" name="project-description" />
+        <input type="text" v-model="invoiceForm.description" />
       </div>
       <h4>Item List</h4>
       <div class="item__properties">
@@ -71,11 +71,24 @@
         <span>Total</span>
         <span>Delete</span>
       </div>
-      <div></div>
-      <form class="item__form">
-        <input type="text" name="item-name" placeholder="Item Name" />
-        <input type="number" name="item-qty" placeholder="Item Quantity" />
-        <input type="number" name="item-price" placeholder="Item Price" />
+      <div v-for="item in invoiceForm.items" :key="item.name">
+        <span>{{ item.name }}</span>
+        <span>{{ item.quantity }}</span>
+        <span>{{ item.price }}</span>
+        <span>{{ item.total }}</span>
+      </div>
+      <form class="item__form" @submit.prevent="">
+        <input type="text" placeholder="Item Name" v-model="itemForm.name" />
+        <input
+          type="number"
+          placeholder="Item Quantity"
+          v-model="itemForm.quantity"
+        />
+        <input
+          type="number"
+          placeholder="Item Price"
+          v-model="itemForm.price"
+        />
         <Button
           text="+ Add New Item"
           modiffier="white"
@@ -100,12 +113,83 @@
 </template>
 
 <script>
+import { Event } from "../utils/Event";
 import Button from "./Button";
+import Form from "../utils/Form";
 
 export default {
   props: ["type"],
   components: {
     Button,
+  },
+  data() {
+    return {
+      invoiceForm: new Form({
+        id: "",
+        createdAt: "",
+        paymentDue: "",
+        description: "",
+        paymentTerms: "",
+        clientName: "",
+        clientEmail: "",
+        status: "pending",
+        senderAddress: {
+          street: "",
+          city: "",
+          postCode: "",
+          country: "",
+        },
+        clientAddress: {
+          street: "",
+          city: "",
+          postCode: "",
+          country: "",
+        },
+        items: [],
+        total: 0,
+      }),
+      itemForm: new Form({
+        name: "",
+        quantity: 0,
+        price: 0,
+        total: 0,
+      }),
+    };
+  },
+  mounted() {
+    Event.listen("save", () => {
+      this.invoiceForm.paymentDue = this.addDays(
+        this.invoiceForm.createdAt,
+        this.invoiceForm.paymentTerms
+      );
+      console.log(this.invoiceForm.data());
+      this.axios
+        .post("http://localhost:3001/invoices", this.invoiceForm.data())
+        .then(res => {
+          console.log(res);
+          Event.fire("created");
+        })
+        .catch(e => console.log(e));
+    });
+
+    Event.listen("add-item", () => {
+      let item = {
+        name: this.itemForm.name,
+        quantity: this.itemForm.quantity,
+        price: this.itemForm.price,
+        total: Number(this.itemForm.price) * Number(this.itemForm.quantity),
+      };
+
+      this.invoiceForm.items.push(item);
+    });
+  },
+  methods: {
+    addDays(date, days) {
+      let result = new Date(date);
+      result.setDate(result.getDate() + Number(days));
+      return `${result.getFullYear()}-${result.getMonth() +
+        1}-${result.getDate()}`;
+    },
   },
 };
 </script>
