@@ -1,5 +1,6 @@
 <template>
   <div>
+    <InvoiceForm v-if="openForm" :invoice="invoice"></InvoiceForm>
     <article v-if="invoice" class="invoice">
       <button @click="goBack" class="btn btn--back">Go back</button>
       <div class="invoice__header">
@@ -82,7 +83,7 @@
       </div>
     </article>
     <Loader v-else></Loader>
-    <DeleteModal v-if="isOpen" :invoiceId="invoice.id"></DeleteModal>
+    <DeleteModal v-if="openModal" :invoiceId="invoice.id"></DeleteModal>
   </div>
 </template>
 
@@ -91,6 +92,7 @@ import { Event } from "../utils/Event";
 import Button from "./Button";
 import Loader from "./Loader";
 import DeleteModal from "./DeleteModal";
+import InvoiceForm from "./InvoiceForm";
 
 export default {
   props: ["invoiceId"],
@@ -98,11 +100,13 @@ export default {
     Button,
     Loader,
     DeleteModal,
+    InvoiceForm,
   },
   data() {
     return {
       invoice: null,
-      isOpen: false,
+      openModal: false,
+      openForm: false,
     };
   },
   methods: {
@@ -127,8 +131,8 @@ export default {
     deleteInvoice() {
       this.axios
         .delete(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
-        .then(() => this.$router.push("/"))
-        .catch(e => console.log(e));
+        .then(() => this.goBack())
+        .catch(() => this.goBack());
     },
   },
   computed: {
@@ -142,15 +146,20 @@ export default {
     });
 
     Event.listen("open-modal", () => {
-      this.isOpen = true;
+      this.openModal = true;
     });
 
     Event.listen("cencel", () => {
-      this.isOpen = false;
+      this.openModal = false;
+      this.openForm = false;
     });
 
     Event.listen("delete", () => {
       this.deleteInvoice();
+    });
+
+    Event.listen("edit", () => {
+      this.openForm = true;
     });
   },
   mounted() {

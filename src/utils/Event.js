@@ -12,4 +12,8 @@ export const Event = new (class {
   listen(event, callback) {
     this.vue.$on(event, callback);
   }
+
+  stop(event) {
+    this.vue.$off(event);
+  }
 })();

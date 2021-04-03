@@ -1,6 +1,6 @@
 <template>
   <div>
-    <InvoiceForm v-if="showForm" type="new"></InvoiceForm>
+    <InvoiceForm v-if="showForm" formType="new"></InvoiceForm>
     <section class="info">
       <h2>
         Invoices

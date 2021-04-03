@@ -1,6 +1,8 @@
 <template>
   <section class="form__wrapper">
-    <h1 class="form__title">New Invoice</h1>
+    <h1 class="form__title">
+      {{ invoice ? `Edit #${invoice._id}` : "New Invoice" }}
+    </h1>
     <form class="form__container" @submit.prevent="submitForm">
       <h4>Bill From</h4>
       <div>
@@ -102,7 +104,7 @@
       </form>
     </form>
     <section class="form__actions">
-      <div v-if="(type = 'new')">
+      <div v-if="formType === 'new'">
         <Button text="Discard" modiffier="white" eventName="cencel"></Button>
         <Button text="Save as Draft" modiffier="black" eventName="saveDraft">
         </Button>
@@ -110,8 +112,12 @@
         </Button>
       </div>
       <div v-else>
-        <Button></Button>
-        <Button></Button>
+        <Button text="cencel" modiffier="white" eventName="cencel"></Button>
+        <Button
+          text="Save Changes"
+          modiffier="purple"
+          eventName="update"
+        ></Button>
       </div>
     </section>
   </section>
@@ -124,14 +130,79 @@ import Form from "../utils/Form";
 import deleteIcon from "../assets/icons/icon-delete.svg";
 
 export default {
-  props: ["type"],
+  props: ["formType", "invoice"],
   components: {
     Button,
   },
   data() {
     return {
       deleteIcon,
-      invoiceForm: new Form({
+      invoiceForm: this.$props.invoice
+        ? Object.assign(this.newForm(), this.$props.invoice)
+        : this.newForm(),
+      itemForm: new Form({
+        name: "",
+        quantity: 0,
+        price: 0,
+        total: 0,
+      }),
+    };
+  },
+  mounted() {
+    Event.listen("save", () => {
+      this.invoiceForm.paymentDue = this.addDays(
+        this.invoiceForm.createdAt,
+        this.invoiceForm.paymentTerms
+      );
+      this.axios
+        .post("http://localhost:3001/invoices", this.invoiceForm.data())
+        .then(res => {
+          console.log(res);
+          this.invoiceForm.reset();
+          Event.fire("created");
+        })
+        .catch(e => console.log(e));
+    });
+
+    Event.listen("update", () => {
+      this.invoiceForm.paymentDue = this.addDays(
+        this.invoiceForm.createdAt,
+        this.invoiceForm.paymentTerms
+      );
+      this.axios
+        .put(
+          `http://localhost:3001/invoices/${this.$props.invoice._id}`,
+          this.invoiceForm.data()
+        )
+        .then(() => {
+          Event.fire("cencel");
+        })
+        .catch(e => console.log(e));
+    });
+
+    Event.listen("add-item", () => {
+      let item = {
+        name: this.itemForm.name,
+        quantity: this.itemForm.quantity,
+        price: this.itemForm.price,
+        total: Number(this.itemForm.price) * Number(this.itemForm.quantity),
+      };
+
+      this.invoiceForm.items.push(item);
+    });
+  },
+  destroyed() {
+    Event.stop("save");
+  },
+  methods: {
+    addDays(date, days) {
+      let result = new Date(date);
+      result.setDate(result.getDate() + Number(days));
+      return `${result.getFullYear()}-${result.getMonth() +
+        1}-${result.getDate()}`;
+    },
+    newForm() {
+      return new Form({
         id: "",
         createdAt: "",
         paymentDue: "",
@@ -154,48 +225,7 @@ export default {
         },
         items: [],
         total: 0,
-      }),
-      itemForm: new Form({
-        name: "",
-        quantity: 0,
-        price: 0,
-        total: 0,
-      }),
-    };
-  },
-  mounted() {
-    Event.listen("save", () => {
-      this.invoiceForm.paymentDue = this.addDays(
-        this.invoiceForm.createdAt,
-        this.invoiceForm.paymentTerms
-      );
-      console.log(this.invoiceForm.data());
-      this.axios
-        .post("http://localhost:3001/invoices", this.invoiceForm.data())
-        .then(res => {
-          console.log(res);
-          Event.fire("created");
-        })
-        .catch(e => console.log(e));
-    });
-
-    Event.listen("add-item", () => {
-      let item = {
-        name: this.itemForm.name,
-        quantity: this.itemForm.quantity,
-        price: this.itemForm.price,
-        total: Number(this.itemForm.price) * Number(this.itemForm.quantity),
-      };
-
-      this.invoiceForm.items.push(item);
-    });
-  },
-  methods: {
-    addDays(date, days) {
-      let result = new Date(date);
-      result.setDate(result.getDate() + Number(days));
-      return `${result.getFullYear()}-${result.getMonth() +
-        1}-${result.getDate()}`;
+      });
     },
   },
 };
