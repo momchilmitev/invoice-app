@@ -151,11 +151,15 @@ export default {
   },
   mounted() {
     Event.listen("save", () => {
+      // Calculating the end date to pay
       this.invoiceForm.paymentDue = this.addDays(
         this.invoiceForm.createdAt,
         this.invoiceForm.paymentTerms
       );
+      // Generating random id
       this.invoiceForm.id = generateId();
+      // Calculating the final invoice sume
+      this.invoiceForm.total = this.totalSume(this.invoiceForm.items);
       this.axios
         .post("http://localhost:3001/invoices", this.invoiceForm.data())
         .then(res => {
@@ -168,10 +172,13 @@ export default {
     });
 
     Event.listen("update", () => {
+      // Generating random id
       this.invoiceForm.paymentDue = this.addDays(
         this.invoiceForm.createdAt,
         this.invoiceForm.paymentTerms
       );
+      // Calculating the final invoice sume
+      this.invoiceForm.total = this.totalSume(this.invoiceForm.items);
       this.axios
         .put(
           `http://localhost:3001/invoices/${this.$props.invoice._id}`,
@@ -204,6 +211,9 @@ export default {
       result.setDate(result.getDate() + Number(days));
       return `${result.getFullYear()}-${result.getMonth() +
         1}-${result.getDate()}`;
+    },
+    totalSume(arr) {
+      return arr.reduce((sum, item) => sum + Number(item.total), 0);
     },
     newForm() {
       return new Form({
