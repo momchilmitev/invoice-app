@@ -125,6 +125,7 @@
 
 <script>
 import { Event } from "../utils/Event";
+import generateId from "../utils/generateId";
 import Button from "./Button";
 import Form from "../utils/Form";
 import deleteIcon from "../assets/icons/icon-delete.svg";
@@ -154,11 +155,13 @@ export default {
         this.invoiceForm.createdAt,
         this.invoiceForm.paymentTerms
       );
+      this.invoiceForm.id = generateId();
       this.axios
         .post("http://localhost:3001/invoices", this.invoiceForm.data())
         .then(res => {
           console.log(res);
           this.invoiceForm.reset();
+          Event.fire("cencel");
           Event.fire("created");
         })
         .catch(e => console.log(e));
