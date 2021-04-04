@@ -77,12 +77,18 @@
         class="item__container"
         v-for="item in invoiceForm.items"
         :key="item.name"
+        :id="item.name"
       >
         <span>{{ item.name }}</span>
         <span>{{ item.quantity }}</span>
         <span>{{ item.price }}</span>
         <span>{{ item.total }}</span>
-        <img class="item__icon" :src="deleteIcon" alt="delete icon" />
+        <img
+          @click="deleteItem($event)"
+          class="item__icon"
+          :src="deleteIcon"
+          alt="delete icon"
+        />
       </div>
       <form class="item__form" @submit.prevent="">
         <input type="text" placeholder="Item Name" v-model="itemForm.name" />
@@ -222,7 +228,7 @@ export default {
       };
 
       this.invoiceForm.items.push(item);
-      this.invoiceForm.reset();
+      this.itemForm.reset();
     });
   },
   destroyed() {
@@ -230,6 +236,12 @@ export default {
     Event.stop("update");
   },
   methods: {
+    deleteItem(e) {
+      const itemToRemove = e.target.parentNode.id;
+      this.invoiceForm.items = this.invoiceForm.items.filter(
+        item => item.name !== itemToRemove
+      );
+    },
     addDays(date, days) {
       let result = new Date(date);
       result.setDate(result.getDate() + Number(days));
