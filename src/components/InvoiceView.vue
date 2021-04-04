@@ -165,6 +165,10 @@ export default {
   mounted() {
     this.getInvoice();
   },
+  destroyed() {
+    Event.stop("delete");
+    Event.stop("paid");
+  },
 };
 </script>
 

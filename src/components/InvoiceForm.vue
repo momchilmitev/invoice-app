@@ -193,6 +193,7 @@ export default {
   },
   destroyed() {
     Event.stop("save");
+    Event.stop("update");
   },
   methods: {
     addDays(date, days) {

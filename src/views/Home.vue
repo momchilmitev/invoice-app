@@ -8,11 +8,7 @@
       </h2>
       <div class="info__actions">
         <InvoiceFilter></InvoiceFilter>
-        <Button
-          text="New"
-          modiffier="create"
-          eventName="createInvoice"
-        ></Button>
+        <Button text="New" modiffier="create" eventName="openForm"></Button>
       </div>
     </section>
     <Loader v-if="loading"></Loader>
@@ -51,16 +47,12 @@ export default {
   created() {
     this.fetchInvoices();
 
-    Event.listen("createInvoice", () => {
+    Event.listen("openForm", () => {
       this.showForm = true;
     });
 
     Event.listen("filter", filters => {
       this.filters = filters;
-    });
-
-    Event.listen("createInvoice", () => {
-      this.showForm = true;
     });
 
     Event.listen("cencel", () => {
@@ -97,6 +89,12 @@ export default {
         return this.invoices;
       }
     },
+  },
+  destroyed() {
+    Event.stop("created");
+    Event.stop("filter");
+    Event.stop("cencel");
+    Event.stop("openForm");
   },
 };
 </script>
