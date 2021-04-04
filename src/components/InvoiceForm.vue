@@ -171,6 +171,29 @@ export default {
         .catch(e => console.log(e));
     });
 
+    Event.listen("saveDraft", () => {
+      // Calculating the end date to pay
+      this.invoiceForm.paymentDue = this.addDays(
+        this.invoiceForm.createdAt,
+        this.invoiceForm.paymentTerms
+      );
+      // Generating random id
+      this.invoiceForm.id = generateId();
+      // Calculating the final invoice sume
+      this.invoiceForm.total = this.totalSume(this.invoiceForm.items);
+      // Setting the status of the invoice to draft
+      this.invoiceForm.status = "draft";
+      this.axios
+        .post("http://localhost:3001/invoices", this.invoiceForm.data())
+        .then(res => {
+          console.log(res);
+          this.invoiceForm.reset();
+          Event.fire("cencel");
+          Event.fire("created");
+        })
+        .catch(e => console.log(e));
+    });
+
     Event.listen("update", () => {
       // Generating random id
       this.invoiceForm.paymentDue = this.addDays(
@@ -199,6 +222,7 @@ export default {
       };
 
       this.invoiceForm.items.push(item);
+      this.invoiceForm.reset();
     });
   },
   destroyed() {
