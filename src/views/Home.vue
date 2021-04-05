@@ -55,7 +55,7 @@ export default {
       this.filters = filters;
     });
 
-    Event.listen("cencel", () => {
+    Event.listen("close-form", () => {
       this.showForm = false;
     });
 

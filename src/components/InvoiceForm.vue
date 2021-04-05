@@ -1,7 +1,7 @@
 <template>
   <section class="form__wrapper">
     <h1 class="form__title">
-      {{ invoice ? `Edit #${invoice._id}` : "New Invoice" }}
+      {{ invoice ? `Edit #${invoice.id}` : "New Invoice" }}
     </h1>
     <form class="form__container" @submit.prevent="submitForm">
       <h4>Bill From</h4>
@@ -55,8 +55,8 @@
         <input type="date" v-model="invoiceForm.createdAt" />
         <p>Payment Terms</p>
         <select v-model="invoiceForm.paymentTerms">
-          <option value="1">Next 1 Day</option>
-          <option value="7">Next 7 Day</option>
+          <option value="01">Next 1 Day</option>
+          <option value="07">Next 7 Day</option>
           <option value="14">Next 14 Day</option>
           <option value="30">Next 30 Day</option>
         </select>
@@ -111,14 +111,18 @@
     </form>
     <section class="form__actions">
       <div v-if="formType === 'new'">
-        <Button text="Discard" modiffier="white" eventName="cencel"></Button>
+        <Button
+          text="Discard"
+          modiffier="white"
+          eventName="close-form"
+        ></Button>
         <Button text="Save as Draft" modiffier="black" eventName="saveDraft">
         </Button>
         <Button text="Save & Send" modiffier="purple" eventName="save">
         </Button>
       </div>
       <div v-else>
-        <Button text="cencel" modiffier="white" eventName="cencel"></Button>
+        <Button text="cencel" modiffier="white" eventName="close-form"></Button>
         <Button
           text="Save Changes"
           modiffier="purple"
@@ -171,7 +175,7 @@ export default {
         .then(res => {
           console.log(res);
           this.invoiceForm.reset();
-          Event.fire("cencel");
+          Event.fire("close-form");
           Event.fire("created");
         })
         .catch(e => console.log(e));
@@ -194,14 +198,14 @@ export default {
         .then(res => {
           console.log(res);
           this.invoiceForm.reset();
-          Event.fire("cencel");
+          Event.fire("close-form");
           Event.fire("created");
         })
         .catch(e => console.log(e));
     });
 
     Event.listen("update", () => {
-      // Generating random id
+      // Calculate the last payment date
       this.invoiceForm.paymentDue = this.addDays(
         this.invoiceForm.createdAt,
         this.invoiceForm.paymentTerms
@@ -214,7 +218,7 @@ export default {
           this.invoiceForm.data()
         )
         .then(() => {
-          Event.fire("cencel");
+          Event.fire("close-form");
         })
         .catch(e => console.log(e));
     });
@@ -245,11 +249,23 @@ export default {
     addDays(date, days) {
       let result = new Date(date);
       result.setDate(result.getDate() + Number(days));
-      return `${result.getFullYear()}-${result.getMonth() +
-        1}-${result.getDate()}`;
+      let month = result.getMonth() + 1;
+      let day = result.getDate();
+      if (month < 10) {
+        month = "0" + month;
+      }
+
+      if (day < 10) {
+        day = "0" + day;
+      }
+      return `${result.getFullYear()}-${month}-${day}`;
     },
     totalSume(arr) {
-      return arr.reduce((sum, item) => sum + Number(item.total), 0);
+      if (arr.length > 0) {
+        return arr.reduce((sum, item) => sum + Number(item.total), 0);
+      }
+
+      return 0;
     },
     newForm() {
       return new Form({

@@ -11,7 +11,7 @@
           class="cencel"
           text="cencel"
           modiffier="white"
-          eventName="cencel"
+          eventName="close-modal"
         ></Button>
         <Button text="delete" modiffier="red" eventName="delete"></Button>
       </div>

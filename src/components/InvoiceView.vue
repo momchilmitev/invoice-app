@@ -149,8 +149,11 @@ export default {
       this.openModal = true;
     });
 
-    Event.listen("cencel", () => {
+    Event.listen("close-modal", () => {
       this.openModal = false;
+    });
+
+    Event.listen("close-form", () => {
       this.openForm = false;
     });
 
