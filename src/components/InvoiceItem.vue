@@ -147,4 +147,30 @@ export default {
     display: none;
   }
 }
+
+@media (min-width: 768px) {
+  .item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    height: auto;
+
+    &__date {
+      align-self: initial;
+    }
+
+    &__status {
+      width: 20%;
+    }
+
+    &__price {
+      margin-top: 0;
+    }
+
+    &__arrow {
+      display: initial;
+    }
+  }
+}
 </style>
