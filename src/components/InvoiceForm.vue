@@ -1,9 +1,9 @@
 <template>
   <section class="form__wrapper">
-    <h1 class="form__title">
-      {{ invoice ? `Edit #${invoice.id}` : "New Invoice" }}
-    </h1>
     <form class="form__container" @submit.prevent="submitForm">
+      <h1 class="form__title">
+        {{ invoice ? `Edit #${invoice.id}` : "New Invoice" }}
+      </h1>
       <h4>Bill From</h4>
       <div>
         <p>Street Address</p>
@@ -50,16 +50,20 @@
           <input type="text" v-model="invoiceForm.clientAddress.country" />
         </div>
       </div>
-      <div>
-        <p>Invoice Date</p>
-        <input type="date" v-model="invoiceForm.createdAt" />
-        <p>Payment Terms</p>
-        <select v-model="invoiceForm.paymentTerms">
-          <option value="01">Next 1 Day</option>
-          <option value="07">Next 7 Day</option>
-          <option value="14">Next 14 Day</option>
-          <option value="30">Next 30 Day</option>
-        </select>
+      <div class="form__time">
+        <div>
+          <p>Invoice Date</p>
+          <input type="date" v-model="invoiceForm.createdAt" />
+        </div>
+        <div>
+          <p>Payment Terms</p>
+          <select v-model="invoiceForm.paymentTerms">
+            <option value="01">Next 1 Day</option>
+            <option value="07">Next 7 Day</option>
+            <option value="14">Next 14 Day</option>
+            <option value="30">Next 30 Day</option>
+          </select>
+        </div>
       </div>
       <div>
         <p>Project Description</p>
@@ -303,7 +307,7 @@ export default {
     box-sizing: border-box;
     padding-bottom: 21px;
     position: absolute;
-    top: 0;
+    top: 72px;
     left: 0;
     width: 100%;
     height: auto;
@@ -376,6 +380,8 @@ export default {
 
   &__actions {
     margin-top: 88px;
+    background-color: #fff;
+    border-bottom-right-radius: 20px;
 
     & div {
       & > .btn {
@@ -384,7 +390,6 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #fff;
     }
   }
 }
@@ -434,6 +439,62 @@ export default {
     line-height: 15px;
     letter-spacing: -0.25px;
     color: #7c5dfa;
+  }
+}
+
+@media (min-width: 768px) {
+  .form {
+    &__wrapper {
+      padding: 0;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+    }
+
+    &__container {
+      width: 80%;
+      background: #fff;
+      padding: 24px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    &__address-details {
+      flex-wrap: nowrap;
+
+      & > div:nth-child(n) {
+        flex: 1;
+      }
+
+      & > div:nth-child(2) {
+        margin-right: 23px;
+      }
+    }
+
+    &__time {
+      display: flex;
+      justify-content: space-between;
+
+      & > div {
+        flex: 1;
+      }
+
+      & > div:nth-child(1) {
+        margin-right: 23px;
+      }
+    }
+
+    &__actions {
+      width: 85%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      margin-top: 0;
+      box-sizing: border-box;
+      padding: 24px;
+    }
+  }
+
+  .item__form {
+    margin-bottom: 100px;
   }
 }
 </style>

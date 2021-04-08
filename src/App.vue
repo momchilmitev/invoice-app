@@ -60,12 +60,14 @@ p {
 }
 
 .app {
-  height: 100vh;
-  overflow: scroll;
+  box-sizing: border-box;
+  min-height: 100vh;
+  // overflow: scroll;
   background-color: var(--white);
 }
 
 .main {
   padding: 0 24px;
+  padding-bottom: 24px;
 }
 </style>
