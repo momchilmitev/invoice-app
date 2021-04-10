@@ -73,4 +73,14 @@ export default {
     justify-content: flex-end;
   }
 }
+
+@media (min-width: 768px) {
+  .modal {
+    &__container {
+      width: 480px;
+      height: 249px;
+      padding: 48px;
+    }
+  }
+}
 </style>
