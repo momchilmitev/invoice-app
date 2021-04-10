@@ -58,8 +58,8 @@
         <div class="invoice__items">
           <div class="invoice__items__header">
             <p>Item Name</p>
-            <p>QTY.</p>
-            <p>Price</p>
+            <p>QTY. & Price</p>
+            <!-- <p>Price</p> -->
             <p>Total</p>
           </div>
           <div
@@ -370,6 +370,63 @@ export default {
     & h3 {
       margin-top: 12px;
       margin-bottom: 12px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .invoice {
+    margin-bottom: 0;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__actions {
+      position: initial;
+      justify-content: flex-end;
+      width: initial;
+      padding: 0;
+
+      & > .btn {
+        margin-right: 8px;
+      }
+    }
+
+    &__status {
+      min-width: 104px;
+      margin-left: 16px;
+    }
+
+    &__id {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__items {
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 24px 24px 0 24px;
+
+        & > p {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 11px;
+          line-height: 18px;
+          letter-spacing: -0.229167px;
+          color: #7e88c3;
+        }
+      }
+    }
+
+    &__item {
+      & > div {
+        width: 58%;
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 }
