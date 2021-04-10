@@ -4,7 +4,8 @@
       <img class="empty__image" :src="imageSrc" alt="empty image" />
       <h3 class="empty__header">There is nothing here</h3>
       <p class="empty__description">
-        Create a new invoice by clicking the New button and get started
+        Create a new invoice by clicking the <span>New</span> button and get
+        started
       </p>
     </div>
   </section>
@@ -65,6 +66,10 @@ export default {
     text-align: center;
     letter-spacing: -0.25px;
     color: #888eb0;
+
+    & > span {
+      font-weight: bold;
+    }
   }
 }
 
@@ -72,10 +77,16 @@ export default {
   .empty {
     &__main {
       text-align: center;
+      width: 40%;
     }
 
     &__image {
       width: 60%;
+    }
+
+    &__description {
+      width: 60%;
+      margin: 0 auto;
     }
   }
 }
