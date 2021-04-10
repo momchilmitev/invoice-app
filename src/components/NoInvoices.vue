@@ -39,7 +39,9 @@ export default {
   }
 
   &__main {
-    width: 60%;
+    max-width: 242px;
+    max-height: 341px;
+    text-align: center;
   }
 
   &__image {
@@ -63,30 +65,11 @@ export default {
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    text-align: center;
     letter-spacing: -0.25px;
     color: #888eb0;
 
     & > span {
       font-weight: bold;
-    }
-  }
-}
-
-@media (min-width: 768px) {
-  .empty {
-    &__main {
-      text-align: center;
-      width: 40%;
-    }
-
-    &__image {
-      width: 60%;
-    }
-
-    &__description {
-      width: 60%;
-      margin: 0 auto;
     }
   }
 }
