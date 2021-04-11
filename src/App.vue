@@ -61,20 +61,20 @@ p {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
-  border: 6px solid transparent;
+  width: 30px;
 }
 
 // /* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 20px;
+  background-color: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #dfe3fa;
-
+  border: 10px solid transparent;
   border-radius: 20px;
+  background-clip: padding-box;
 }
 
 .app {
