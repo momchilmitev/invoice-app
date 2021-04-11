@@ -36,6 +36,7 @@ export default {
   border: none;
   padding: 15px;
   border-radius: 24px;
+  cursor: pointer;
 
   &--create {
     position: relative;

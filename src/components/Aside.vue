@@ -60,6 +60,7 @@ export default {
 
     & > img {
       display: inline-block;
+      cursor: pointer;
       width: 20px;
       height: 20px;
       margin: 26px;
@@ -102,6 +103,46 @@ export default {
     display: inline-block;
     margin: 23px;
     z-index: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .aside {
+    width: 103px;
+    height: 100vh;
+    flex-direction: column;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: 0;
+
+    &__images {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__icon {
+      width: 100%;
+      text-align: center;
+      border-right: 0;
+      border-bottom: 1px solid #494e6e;
+    }
+  }
+
+  .logo {
+    width: 100%;
+    height: 103px;
+
+    &__up {
+      width: 100%;
+    }
+
+    &__image {
+      margin: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 </style>

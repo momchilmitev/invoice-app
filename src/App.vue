@@ -70,4 +70,16 @@ p {
   padding: 0 24px;
   padding-bottom: 24px;
 }
+
+@media (min-width: 1024px) {
+  .app {
+    display: flex;
+  }
+
+  .main {
+    width: 730px;
+    margin: 0 auto;
+    margin-top: 72px;
+  }
+}
 </style>
