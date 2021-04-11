@@ -4,7 +4,7 @@
     <section class="info">
       <h2>
         Invoices
-        <span>{{ invoices.length ? invoices.length : 0 }} invoices</span>
+        <span>{{ invoices.length ? invoices.length : "No" }} invoices</span>
       </h2>
       <div class="info__actions">
         <InvoiceFilter></InvoiceFilter>

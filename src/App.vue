@@ -59,10 +59,27 @@ p {
   box-sizing: border-box;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  border: 6px solid transparent;
+}
+
+// /* Track */
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #dfe3fa;
+
+  border-radius: 20px;
+}
+
 .app {
   box-sizing: border-box;
   min-height: 100vh;
-  // overflow: scroll;
   background-color: var(--white);
 }
 

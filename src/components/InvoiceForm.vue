@@ -497,4 +497,29 @@ export default {
     margin-bottom: 100px;
   }
 }
+
+@media (min-width: 1024px) {
+  .form {
+    &__wrapper {
+      top: 0;
+      left: 103px;
+      height: 100vh;
+      width: calc(100% - 103px);
+    }
+
+    &__container {
+      box-sizing: border-box;
+      height: 100vh;
+      overflow-y: scroll;
+      width: 616px;
+    }
+
+    &__actions {
+      width: 616px;
+      left: 103px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+  }
+}
 </style>
