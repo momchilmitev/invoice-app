@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div id="app" :class="theme">
     <Aside @theme-changed="switchTheme" />
     <main class="main">
       <router-view />
@@ -22,6 +22,11 @@ export default {
   methods: {
     switchTheme() {
       this.$data.darkTheme = !this.$data.darkTheme;
+    },
+  },
+  computed: {
+    theme() {
+      return this.darkTheme ? "app app-dark" : "app";
     },
   },
 };
@@ -97,6 +102,37 @@ p {
     width: 730px;
     margin: 0 auto;
     margin-top: 72px;
+  }
+}
+
+.app-dark {
+  background-color: #141625;
+
+  & .info {
+    color: #fff;
+  }
+
+  & .filter {
+    color: #fff;
+  }
+
+  & .filter__filters {
+    background-color: #1e2139;
+  }
+
+  & .item {
+    background-color: #1e2139;
+    & > p:not(:nth-child(5)) {
+      color: #fff;
+    }
+  }
+
+  & .item__status--draft {
+    & > span {
+      background-color: #fff;
+    }
+    color: #fff;
+    background-color: rgba($color: #dfe3fa, $alpha: 0.06);
   }
 }
 </style>
