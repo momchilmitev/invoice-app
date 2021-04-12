@@ -134,5 +134,10 @@ p {
     color: #fff;
     background-color: rgba($color: #dfe3fa, $alpha: 0.06);
   }
+
+  & .empty__header,
+  .empty__description {
+    color: #fff;
+  }
 }
 </style>

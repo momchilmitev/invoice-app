@@ -44,7 +44,7 @@ export default {
       showForm: false,
     };
   },
-  created() {
+  mounted() {
     this.fetchInvoices();
 
     Event.listen("openForm", () => {
