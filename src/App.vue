@@ -139,5 +139,44 @@ p {
   .empty__description {
     color: #fff;
   }
+
+  & .btn--back {
+    color: #fff;
+  }
+
+  & .btn--white {
+    color: #fff;
+    background-color: #252945;
+  }
+
+  & .invoice__header,
+  .invoice__main,
+  .invoice__actions {
+    background-color: #1e2139;
+  }
+
+  & .invoice__info,
+  .invoice__details h3,
+  .invoice__details p {
+    color: #fff;
+  }
+
+  & .invoice__items {
+    background-color: #252945;
+  }
+
+  & .invoice__items__total {
+    background-color: #0e0c16;
+  }
+
+  & .invoice__items__header p {
+    color: #fff;
+  }
+
+  & .invoice__item__name,
+  .invoice__item__quantity,
+  .invoice__item__total {
+    color: #fff;
+  }
 }
 </style>
