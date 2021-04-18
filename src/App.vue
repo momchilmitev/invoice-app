@@ -187,5 +187,47 @@ p {
   & .modal__content {
     color: #fff;
   }
+
+  & .form__wrapper,
+  .form__container {
+    background-color: #141625;
+    color: #fff;
+  }
+
+  & .form__actions {
+    background-color: transparent;
+  }
+
+  & .form__actions .btn--black {
+    background-color: #1e2139;
+    color: #fff;
+  }
+
+  & .form__actions .btn--white {
+    background-color: #f9fafe;
+    color: #979797;
+  }
+
+  & .form__container div > input,
+  .form__container div > select,
+  .form__container .item__form > input {
+    background-color: #252945;
+    border-color: transparent;
+    color: #fff;
+    outline: none;
+  }
+
+  & .item__container {
+    background-color: var(--gray);
+  }
+
+  & .item__container > span {
+    color: #fff;
+  }
+
+  & .form__container p,
+  .form__container .item__properties > span {
+    color: #fff;
+  }
 }
 </style>

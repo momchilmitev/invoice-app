@@ -446,6 +446,10 @@ export default {
     letter-spacing: -0.25px;
     color: #7c5dfa;
   }
+
+  & > img {
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 768px) {
