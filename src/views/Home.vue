@@ -68,7 +68,7 @@ export default {
     fetchInvoices() {
       this.loading = true;
       this.axios
-        .get("http://localhost:3001/invoices")
+        .get("https://invoice-app-mm.herokuapp.com/invoices")
         .then(res => {
           this.invoices = res.data;
           this.loading = false;

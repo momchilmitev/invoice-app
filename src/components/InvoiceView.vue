@@ -115,12 +115,16 @@ export default {
     },
     getInvoice() {
       this.axios
-        .get(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
+        .get(
+          `https://invoice-app-mm.herokuapp.com/invoices/${this.$props.invoiceId}`
+        )
         .then(res => (this.invoice = res.data));
     },
     markAsPaid() {
       this.axios
-        .patch(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
+        .patch(
+          `https://invoice-app-mm.herokuapp.com/invoices/${this.$props.invoiceId}`
+        )
         .then(() => {
           this.getInvoice();
         })
@@ -130,7 +134,9 @@ export default {
     },
     deleteInvoice() {
       this.axios
-        .delete(`http://localhost:3001/invoices/${this.$props.invoiceId}`)
+        .delete(
+          `https://invoice-app-mm.herokuapp.com/invoices/${this.$props.invoiceId}`
+        )
         .then(() => this.goBack())
         .catch(() => this.goBack());
     },

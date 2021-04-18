@@ -175,7 +175,10 @@ export default {
       // Calculating the final invoice sume
       this.invoiceForm.total = this.totalSume(this.invoiceForm.items);
       this.axios
-        .post("http://localhost:3001/invoices", this.invoiceForm.data())
+        .post(
+          "https://invoice-app-mm.herokuapp.com/invoices",
+          this.invoiceForm.data()
+        )
         .then(res => {
           console.log(res);
           this.invoiceForm.reset();
@@ -198,7 +201,10 @@ export default {
       // Setting the status of the invoice to draft
       this.invoiceForm.status = "draft";
       this.axios
-        .post("http://localhost:3001/invoices", this.invoiceForm.data())
+        .post(
+          "https://invoice-app-mm.herokuapp.com/invoices",
+          this.invoiceForm.data()
+        )
         .then(res => {
           console.log(res);
           this.invoiceForm.reset();
@@ -218,7 +224,7 @@ export default {
       this.invoiceForm.total = this.totalSume(this.invoiceForm.items);
       this.axios
         .put(
-          `http://localhost:3001/invoices/${this.$props.invoice._id}`,
+          `https://invoice-app-mm.herokuapp.com/invoices/${this.$props.invoice._id}`,
           this.invoiceForm.data()
         )
         .then(() => {
