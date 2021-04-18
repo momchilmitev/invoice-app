@@ -178,5 +178,14 @@ p {
   .invoice__item__total {
     color: #fff;
   }
+
+  & .modal__container {
+    background-color: #1e2139;
+    color: #fff;
+  }
+
+  & .modal__content {
+    color: #fff;
+  }
 }
 </style>
