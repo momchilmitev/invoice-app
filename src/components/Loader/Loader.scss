@@ -1,53 +1,53 @@
 .spinner {
-    width: 50px;
-    height: 50px;
-    position: relative;
-    margin: 0 auto;
-  
-    & div {
-      box-sizing: border-box;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 6px solid transparent;
-      border-top-color: #ad60f5;
-      border-radius: 50%;
-      animation: sideOne 1.2s linear infinite;
-    }
-  
-    & div:nth-child(2) {
-      border: 6px solid transparent;
-      border-bottom-color: #ad60f5;
-      animation: sideTwo 1.2s linear infinite;
-    }
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin: 0 auto;
+
+  & div {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 6px solid transparent;
+    border-top-color: #ad60f5;
+    border-radius: 50%;
+    animation: sideOne 1.2s linear infinite;
   }
-  
-  @keyframes sideOne {
-    0% {
-      transform: rotate(0deg);
-      border-width: 6px;
-    }
-    50% {
-      transform: rotate(180deg);
-      border-width: 1px;
-    }
-    100% {
-      transform: rotate(360deg);
-      border-width: 6px;
-    }
+
+  & div:nth-child(2) {
+    border: 6px solid transparent;
+    border-bottom-color: #ad60f5;
+    animation: sideTwo 1.2s linear infinite;
   }
-  
-  @keyframes sideTwo {
-    0% {
-      transform: rotate(0deg);
-      border-width: 1px;
-    }
-    50% {
-      transform: rotate(180deg);
-      border-width: 6px;
-    }
-    100% {
-      transform: rotate(360deg);
-      border-width: 1px;
-    }
+}
+
+@keyframes sideOne {
+  0% {
+    transform: rotate(0deg);
+    border-width: 6px;
   }
+  50% {
+    transform: rotate(180deg);
+    border-width: 1px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 6px;
+  }
+}
+
+@keyframes sideTwo {
+  0% {
+    transform: rotate(0deg);
+    border-width: 1px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 6px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 1px;
+  }
+}
