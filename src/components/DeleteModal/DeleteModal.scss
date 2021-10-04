@@ -1,0 +1,52 @@
+.cencel {
+  margin-right: 8px;
+}
+
+.modal {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: 0.5);
+  z-index: 1;
+
+  &__container {
+    box-sizing: border-box;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 327px;
+    height: auto;
+    padding: 32px;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  &__content {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: -0.25px;
+    color: #888eb0;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    &__container {
+      width: 480px;
+      height: 249px;
+      padding: 48px;
+    }
+  }
+}
