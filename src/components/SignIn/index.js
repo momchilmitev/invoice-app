@@ -48,7 +48,7 @@ const SignIn = () => {
         value={password}
       />
       <input
-        className="sign-in__submit"
+        className="sign-in__submit btn btn--purple"
         type="submit"
         value={isNewUser ? 'sign up' : 'sign in'}
       />
