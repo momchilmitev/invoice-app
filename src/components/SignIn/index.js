@@ -35,23 +35,31 @@ const SignIn = () => {
 
   return (
     <form className="sign-in__form" onSubmit={onFormSubmit}>
-      <input
-        className="sign-in__input"
-        type="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <input
-        className="sign-in__input"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <input
-        className="sign-in__submit btn btn--purple"
-        type="submit"
-        value={isNewUser ? 'sign up' : 'sign in'}
-      />
+      <div>
+        <p>Email address:</p>
+        <input
+          className="sign-in__input"
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+      </div>
+      <div>
+        <p>Password:</p>
+        <input
+          className="sign-in__input"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+      </div>
+      <div>
+        <input
+          className="sign-in__submit btn btn--purple"
+          type="submit"
+          value={isNewUser ? 'Sign Up' : 'Sign In'}
+        />
+      </div>
       <p className="sign-in__info">
         Are you new user?{' '}
         <span onClick={() => setIsNewUser(!isNewUser)}>SignUp</span>
