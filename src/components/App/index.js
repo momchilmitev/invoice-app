@@ -19,20 +19,24 @@ function App() {
   const { user } = useContext(AuthContext);
 
   return (
-    <Router>
-      <Suspense fallback={<Loader />}>
-        <Aside />
-        <Switch>
-          <Route exact path="/">
-            {user ? <Redirect to="/home" /> : <SignIn />}
-          </Route>
-          <Route path="/home" component={HomePage} />
-          <Route path="/create" component={CreatePage} />
-          <Route path="/edit" component={EditPage} />
-          <Route path="/view" component={ViewPage} />
-        </Switch>
-      </Suspense>
-    </Router>
+    <div className="app">
+      <Router>
+        <Suspense fallback={<Loader />}>
+          <Aside />
+          <main className="main">
+            <Switch>
+              <Route exact path="/">
+                {user ? <Redirect to="/home" /> : <SignIn />}
+              </Route>
+              <Route path="/home" component={HomePage} />
+              <Route path="/create" component={CreatePage} />
+              <Route path="/edit" component={EditPage} />
+              <Route path="/view" component={ViewPage} />
+            </Switch>
+          </main>
+        </Suspense>
+      </Router>
+    </div>
   );
 }
 
