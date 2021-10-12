@@ -4,10 +4,11 @@ import { useState } from 'react';
 const InvoiceFilter = ({ filters, setFilters }) => {
   const [isOpen, setIsOpen] = useState(false);
   const filterClassName = isOpen ? 'filter__filters isOpen' : 'filter__filters';
+  const arrowClassName = isOpen ? 'filter__arrow filter__arrow--rotated' : 'filter__arrow';
 
   return (
     <div class="filter" onClick={() => setIsOpen(!isOpen)}>
-      Filter <span class="filter__arrow"></span>
+      Filter <span class={arrowClassName}></span>
       <div class={filterClassName}>
         <div class="filter__filter">
           <input type="checkbox" /> Draft
