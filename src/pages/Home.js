@@ -3,7 +3,7 @@ import InvoiceFilter from '../components/InvoiceFilter';
 
 const Home = ({ invoices = [] }) => {
   return <>
-      <section class="info">
+      <section className="info">
       <h2>
         Invoices
         <span>{ invoices.length ? invoices.length : "No" } invoices</span>

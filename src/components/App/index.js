@@ -1,11 +1,13 @@
 import './App.scss';
-import { Suspense, lazy, useContext } from 'react';
+import { Suspense, lazy, useContext, useState, useEffect } from 'react';
+import {collection, getDocs  } from 'firebase/firestore/lite';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
+import { db } from '../../firebase/';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loader from '@components/Loader';
 import HomePage from '@pages/Home';
@@ -16,7 +18,19 @@ const EditPage = lazy(() => import('@pages/Edit'));
 const ViewPage = lazy(() => import('@pages/View'));
 
 function App() {
+  const [invoices, setInvoices] = useState([]);
   const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    async function getInvoices() {
+      const invoicesCol = collection(db, 'invoices');
+      const invoicesSnapshot = await getDocs(invoicesCol);
+      const invoicesList = invoicesSnapshot.docs.map(doc => doc.data());
+      setInvoices([...invoices, ...invoicesList]);
+    }
+
+    getInvoices();
+  }, []);
 
   return (
     <div className="app">
@@ -28,7 +42,9 @@ function App() {
               <Route exact path="/">
                 {user ? <Redirect to="/home" /> : <SignIn />}
               </Route>
-              <Route path="/home" component={HomePage} />
+              <Route path="/home">
+                <HomePage invoices={invoices} />
+              </Route>
               <Route path="/create" component={CreatePage} />
               <Route path="/edit" component={EditPage} />
               <Route path="/view" component={ViewPage} />
