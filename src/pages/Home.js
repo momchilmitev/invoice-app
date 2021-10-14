@@ -1,7 +1,8 @@
 import './Home.scss';
 import InvoiceFilter from '../components/InvoiceFilter';
+import InvoiceList from '../components/InvoiceList';
 
-const Home = ({ invoices = [] }) => {
+const Home = ({ invoices }) => {
   return <>
       <section className="info">
       <h2>
@@ -13,6 +14,7 @@ const Home = ({ invoices = [] }) => {
         <button className="btn btn--create">New</button>
       </div>
     </section>
+    <InvoiceList invoices={invoices} />
   </>
 }
 

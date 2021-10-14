@@ -2,10 +2,11 @@ import './InvoiceItem.scss';
 import rightArrow from '../../assets/icons/icon-arrow-right.svg';
 
 const InvoiceItem = ({ invoice }) => {
+  console.log(invoice);
   return (
     <article className="item">
       <p className="item__id">#{invoice.id}</p>
-      <p className="item__date">{invoice.paymentDue}</p>
+      <p className="item__date">{'12 Oct 2021'}</p>
       <p className="item__name">{invoice.clientName}</p>
       <p className="item__price">${invoice.total}</p>
       <p className="item__status">
