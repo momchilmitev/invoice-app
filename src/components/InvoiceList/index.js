@@ -3,7 +3,7 @@ import InvoiceItem from '../InvoiceItem';
 
 const InvoiceList = ({ invoices }) => {
   return <section>
-    {invoices.map(invoice => <InvoiceItem invoice={invoice} />)}
+    {invoices.map(invoice => <InvoiceItem key={invoice.id} invoice={invoice} />)}
   </section>;
 };
 
