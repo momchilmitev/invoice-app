@@ -26,7 +26,6 @@ function App() {
       const invoicesCol = collection(db, 'invoices');
       const invoicesSnapshot = await getDocs(invoicesCol);
       const invoicesList = invoicesSnapshot.docs.map(doc => {
-        console.log(doc.id);
         return {
           id: doc.id,
           ...doc.data()

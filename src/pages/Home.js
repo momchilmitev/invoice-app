@@ -9,7 +9,7 @@ const Home = ({ invoices }) => {
         Invoices
         <span>{ invoices.length ? invoices.length : "No" } invoices</span>
       </h2>
-      <div class="info__actions">
+      <div className="info__actions">
         <InvoiceFilter />
         <button className="btn btn--create">New</button>
       </div>

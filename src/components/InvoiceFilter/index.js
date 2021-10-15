@@ -7,16 +7,16 @@ const InvoiceFilter = ({ filters, setFilters }) => {
   const arrowClassName = isOpen ? 'filter__arrow filter__arrow--rotated' : 'filter__arrow';
 
   return (
-    <div class="filter" onClick={() => setIsOpen(!isOpen)}>
-      Filter <span class={arrowClassName}></span>
-      <div class={filterClassName}>
-        <div class="filter__filter">
+    <div className="filter" onClick={() => setIsOpen(!isOpen)}>
+      Filter <span className={arrowClassName}></span>
+      <div className={filterClassName}>
+        <div className="filter__filter">
           <input type="checkbox" /> Draft
         </div>
-        <div class="filter__filter">
+        <div className="filter__filter">
           <input type="checkbox" /> Pending
         </div>
-        <div class="filter__filter">
+        <div className="filter__filter">
           <input type="checkbox" /> Paid
         </div>
       </div>
