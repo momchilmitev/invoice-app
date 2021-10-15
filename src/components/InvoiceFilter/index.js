@@ -11,13 +11,19 @@ const InvoiceFilter = ({ filters, setFilters }) => {
       Filter <span className={arrowClassName}></span>
       <div className={filterClassName}>
         <div className="filter__filter">
-          <input type="checkbox" /> Draft
+          <label for="draft">
+            <input id="draft" type="checkbox" /> Draft
+          </label>
         </div>
         <div className="filter__filter">
-          <input type="checkbox" /> Pending
+          <label for="pending">
+            <input id="pending" type="checkbox" /> Pending
+          </label>
         </div>
         <div className="filter__filter">
-          <input type="checkbox" /> Paid
+          <label for="paid">
+            <input id="paid" type="checkbox" /> Paid
+          </label>
         </div>
       </div>
     </div>
