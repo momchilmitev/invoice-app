@@ -1,6 +1,6 @@
 import './App.scss';
 import { Suspense, lazy, useContext, useState, useEffect } from 'react';
-import {collection, getDocs  } from 'firebase/firestore/lite';
+import { collection, getDocs } from 'firebase/firestore/lite';
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,10 +25,10 @@ function App() {
     async function getInvoices() {
       const invoicesCol = collection(db, 'invoices');
       const invoicesSnapshot = await getDocs(invoicesCol);
-      const invoicesList = invoicesSnapshot.docs.map(doc => {
+      const invoicesList = invoicesSnapshot.docs.map((doc) => {
         return {
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         };
       });
       setInvoices([...invoices, ...invoicesList]);
@@ -48,7 +48,7 @@ function App() {
                 {user ? <Redirect to="/home" /> : <SignIn />}
               </Route>
               <Route path="/home">
-                <HomePage invoices={invoices} />
+                <HomePage invoices={invoices} setInvoices={setInvoices} />
               </Route>
               <Route path="/create" component={CreatePage} />
               <Route path="/edit" component={EditPage} />

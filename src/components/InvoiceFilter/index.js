@@ -1,7 +1,7 @@
 import './InvoiceFilter.scss';
 import { useState } from 'react';
 
-const InvoiceFilter = ({ filters, setFilters }) => {
+const InvoiceFilter = ({ toggleFilters }) => {
   const [isOpen, setIsOpen] = useState(false);
   const filterClassName = isOpen ? 'filter__filters isOpen' : 'filter__filters';
   const arrowClassName = isOpen ? 'filter__arrow filter__arrow--rotated' : 'filter__arrow';
@@ -11,18 +11,18 @@ const InvoiceFilter = ({ filters, setFilters }) => {
       Filter <span className={arrowClassName}></span>
       <div className={filterClassName}>
         <div className="filter__filter">
-          <label for="draft">
-            <input id="draft" type="checkbox" /> Draft
+          <label htmlFor="draft">
+            <input id="draft" type="checkbox" onChange={(e) => toggleFilters(e)} /> Draft
           </label>
         </div>
         <div className="filter__filter">
-          <label for="pending">
-            <input id="pending" type="checkbox" /> Pending
+          <label htmlFor="pending">
+            <input id="pending" type="checkbox" onChange={(e) => toggleFilters(e)} /> Pending
           </label>
         </div>
         <div className="filter__filter">
-          <label for="paid">
-            <input id="paid" type="checkbox" /> Paid
+          <label htmlFor="paid">
+            <input id="paid" type="checkbox" onChange={(e) => toggleFilters(e)} /> Paid
           </label>
         </div>
       </div>
