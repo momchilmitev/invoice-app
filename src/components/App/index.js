@@ -52,7 +52,9 @@ function App() {
               </Route>
               <Route path="/create" component={CreatePage} />
               <Route path="/edit" component={EditPage} />
-              <Route path="/view" component={ViewPage} />
+              <Route path="/view/:invoiceId">
+                <ViewPage invoices={invoices} />
+              </Route>
             </Switch>
           </main>
         </Suspense>
