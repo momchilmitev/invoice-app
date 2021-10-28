@@ -6,8 +6,8 @@ const InvoiceList = ({ invoices }) => {
   return (
     <section>
       {invoices.map((invoice) => (
-        <Link to={`/view/${invoice.id}`}>
-          <InvoiceItem key={invoice.id} invoice={invoice} />
+        <Link to={`/view/${invoice.id}`} key={invoice.id}>
+          <InvoiceItem invoice={invoice} />
         </Link>
       ))}
     </section>

@@ -1,4 +1,4 @@
-const { resolve } = require('path')
+const { resolve } = require('path');
 
 module.exports = {
   webpack: {
@@ -6,6 +6,7 @@ module.exports = {
       '@components': resolve(__dirname, 'src/components/'),
       '@assets': resolve(__dirname, 'src/assets/'),
       '@pages': resolve(__dirname, 'src/pages/'),
+      '@helpers': resolve(__dirname, 'src/helpers/'),
     },
   },
-}
+};

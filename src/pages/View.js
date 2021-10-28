@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore/lite';
 import { db } from '../firebase';
 import Loader from '@components/Loader';
+import { getDate } from '@helpers';
 
 const View = () => {
   const { invoiceId } = useParams();
@@ -19,6 +20,7 @@ const View = () => {
 
     fetchInvoice();
   }, [invoiceId]);
+  console.log(invoice);
 
   return invoice ? (
     <article className="invoice">
@@ -58,9 +60,9 @@ const View = () => {
           <div className="invoice__date">
             <div>
               <p>Invoice Date</p>
-              {/* <h3>{invoice.createdAt}</h3> */}
+              <h3>{getDate(invoice.createdAt.seconds)}</h3>
               <p>Payment Due</p>
-              {/* <h3>{invoice.paymentDue}</h3> */}
+              <h3>{getDate(invoice.paymentDue.seconds)}</h3>
             </div>
             <div>
               <p>Bill To</p>
