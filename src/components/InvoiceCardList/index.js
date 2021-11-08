@@ -1,17 +1,17 @@
-import './InvoiceList.scss';
+import './InvoiceCardList.scss';
 import { Link } from 'react-router-dom';
-import InvoiceItem from '../InvoiceItem';
+import InvoiceCard from '../InvoiceCard';
 
-const InvoiceList = ({ invoices }) => {
+const InvoiceCardList = ({ invoices }) => {
   return (
     <section>
       {invoices.map((invoice) => (
         <Link to={`/view/${invoice.id}`} key={invoice.id}>
-          <InvoiceItem invoice={invoice} />
+          <InvoiceCard invoice={invoice} />
         </Link>
       ))}
     </section>
   );
 };
 
-export default InvoiceList;
+export default InvoiceCardList;

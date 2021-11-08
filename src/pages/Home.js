@@ -1,7 +1,7 @@
 import './Home.scss';
 import { useState, useEffect } from 'react';
 import InvoiceFilter from '../components/InvoiceFilter';
-import InvoiceList from '../components/InvoiceList';
+import InvoiceCardList from '../components/InvoiceCardList';
 
 const Home = ({ invoices, setInvoices }) => {
   const [filters, setFilters] = useState([]);
@@ -37,7 +37,7 @@ const Home = ({ invoices, setInvoices }) => {
           <button className="btn btn--create">New</button>
         </div>
       </section>
-      <InvoiceList invoices={filteredInvoices} />
+      <InvoiceCardList invoices={filteredInvoices} />
     </>
   );
 };
