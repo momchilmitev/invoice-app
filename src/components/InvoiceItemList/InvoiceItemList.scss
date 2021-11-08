@@ -4,6 +4,15 @@
   margin-top: 40px;
 
   &__header {
-    display: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 0 24px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 18px;
+    letter-spacing: -0.229167px;
+    color: #7e88c3;
   }
 }

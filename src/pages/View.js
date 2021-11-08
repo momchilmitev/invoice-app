@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore/lite';
 import { db } from '../firebase';
+import InvoiceItemList from '@components/InvoiceItemList';
 import Loader from '@components/Loader';
 import { getDate } from '@helpers';
 
@@ -78,6 +79,7 @@ const View = () => {
             </div>
           </div>
         </div>
+        <InvoiceItemList items={invoice.items} />
       </div>
     </article>
   ) : (

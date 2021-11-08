@@ -1,5 +1,5 @@
 import './InvoiceItemList.scss';
-import InvoiceItem from '../InvoiceItem';
+import InvoiceItem from '@components/InvoiceItem';
 
 const InvoiceItemList = ({ items }) => {
   return (
