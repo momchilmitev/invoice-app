@@ -15,4 +15,31 @@
     letter-spacing: -0.229167px;
     color: #7e88c3;
   }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: #373b53;
+    border-radius: 0px 0px 8px 8px;
+    color: #fff;
+    margin-top: 24px;
+
+    & > p:first-child {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 18px;
+      letter-spacing: -0.229167px;
+    }
+
+    & > p:last-child {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 32px;
+      letter-spacing: -0.416667px;
+    }
+  }
 }

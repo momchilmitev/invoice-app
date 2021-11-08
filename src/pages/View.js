@@ -79,7 +79,7 @@ const View = () => {
             </div>
           </div>
         </div>
-        <InvoiceItemList items={invoice.items} />
+        <InvoiceItemList items={invoice.items} invoiceTotal={invoice.total} />
       </div>
     </article>
   ) : (
