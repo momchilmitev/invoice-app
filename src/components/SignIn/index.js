@@ -61,8 +61,10 @@ const SignIn = () => {
         />
       </div>
       <p className="sign-in__info">
-        Are you new user?{' '}
-        <span onClick={() => setIsNewUser(!isNewUser)}>SignUp</span>
+        {isNewUser ? 'Already in the game?' : 'Are you new user?'}
+        <span onClick={() => setIsNewUser(!isNewUser)}>
+          {isNewUser ? 'Sign In' : 'Sign Up'}
+        </span>
       </p>
     </form>
   );
