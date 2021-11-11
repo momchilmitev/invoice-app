@@ -1,10 +1,11 @@
 import './InvoiceForm.scss';
+import DeleteIcon from '../../assets/icons/icon-delete.svg';
 
 const InvoiceForm = ({ type }) => {
   return (
-    <section class="form__wrapper">
-      <form class="form__container">
-        <h1 class="form__title">
+    <section className="form__wrapper">
+      <form className="form__container">
+        <h1 className="form__title">
           {type ? `Edit #897v7b8b7vc7` : 'New Invoice'}
         </h1>
         <h4>Bill From</h4>
@@ -12,7 +13,7 @@ const InvoiceForm = ({ type }) => {
           <p>Street Address</p>
           <input type="text" />
         </div>
-        <div class="form__address-details">
+        <div className="form__address-details">
           <div>
             <p>City</p>
             <input type="text" />
@@ -39,7 +40,7 @@ const InvoiceForm = ({ type }) => {
           <p>Street Address</p>
           <input type="text" />
         </div>
-        <div class="form__address-details">
+        <div className="form__address-details">
           <div>
             <p>City</p>
             <input type="text" />
@@ -53,7 +54,7 @@ const InvoiceForm = ({ type }) => {
             <input type="text" />
           </div>
         </div>
-        <div class="form__time">
+        <div className="form__time">
           <div>
             <p>Invoice Date</p>
             <input type="date" />
@@ -73,36 +74,36 @@ const InvoiceForm = ({ type }) => {
           <input type="text" />
         </div>
         <h4>Item List</h4>
-        <div class="item__properties">
+        <div className="item__properties">
           <span>Item Name</span>
           <span>Qty.</span>
           <span>Price</span>
           <span>Total</span>
           <span>Delete</span>
         </div>
-        {/* <div class="item__container" >
+        {/* <div className="item__container" >
         <span>{ item.name }</span>
         <span>{ item.quantity }</span>
         <span>{ item.price }</span>
         <span>{ item.total }</span>
-        <img class="item__icon" alt="delete icon" />
+        <img src={DeleteIcon} className="item__icon" alt="delete icon" />
       </div> */}
-        <form class="item__form">
+        <form className="item__form">
           <input type="text" placeholder="Item Name" />
           <input type="number" placeholder="Item Quantity" />
           <input type="number" placeholder="Item Price" />
-          <button class="btn btn--white">+ Add New Item</button>
+          <button className="btn btn--white">+ Add New Item</button>
         </form>
       </form>
-      <section class="form__actions">
+      <section className="form__actions">
         <div>
-          <button class="btn btn--white">Discard</button>
-          <button class="btn btn--black">Save as Draft</button>
-          <button class="btn btn--purple">Save & Send</button>
+          <button className="btn btn--white">Discard</button>
+          <button className="btn btn--black">Save as Draft</button>
+          <button className="btn btn--purple">Save & Send</button>
         </div>
         <div>
-          <button class="btn btn--white">cancel</button>
-          <button class="btn btn--purple">Save Changes</button>
+          <button className="btn btn--white">cancel</button>
+          <button className="btn btn--purple">Save Changes</button>
         </div>
       </section>
     </section>
