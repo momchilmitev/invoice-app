@@ -31,7 +31,7 @@ function App() {
           ...doc.data(),
         };
       });
-      setInvoices([...invoices, ...invoicesList]);
+      setInvoices((i) => [...i, ...invoicesList]);
     }
 
     getInvoices();

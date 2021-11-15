@@ -1,5 +1,11 @@
-const Create = () => {
-  return <div>Create</div>
-}
+import InvoiceForm from '@components/InvoiceForm';
 
-export default Create
+const Create = () => {
+  return (
+    <>
+      <InvoiceForm />
+    </>
+  );
+};
+
+export default Create;

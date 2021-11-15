@@ -1,5 +1,6 @@
 import './Home.scss';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import InvoiceFilter from '../components/InvoiceFilter';
 import InvoiceCardList from '../components/InvoiceCardList';
 
@@ -34,7 +35,9 @@ const Home = ({ invoices, setInvoices }) => {
         </h2>
         <div className="info__actions">
           <InvoiceFilter toggleFilters={toggleFilters} />
-          <button className="btn btn--create">New</button>
+          <Link to="/create" className="btn btn--create">
+            New
+          </Link>
         </div>
       </section>
       <InvoiceCardList invoices={filteredInvoices} />
