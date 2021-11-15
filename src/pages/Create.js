@@ -3,7 +3,7 @@ import InvoiceForm from '@components/InvoiceForm';
 const Create = () => {
   return (
     <>
-      <InvoiceForm />
+      <InvoiceForm type="create" />
     </>
   );
 };

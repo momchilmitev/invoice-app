@@ -6,7 +6,7 @@ const InvoiceForm = ({ type }) => {
     <section className="form__wrapper">
       <form className="form__container">
         <h1 className="form__title">
-          {type ? `Edit #897v7b8b7vc7` : 'New Invoice'}
+          {type === 'create' ? 'New Invoice' : 'Edit #897v7b8b7vc7'}
         </h1>
         <h4>Bill From</h4>
         <div>
@@ -96,15 +96,18 @@ const InvoiceForm = ({ type }) => {
         </form>
       </form>
       <section className="form__actions">
-        <div>
-          <button className="btn btn--white">Discard</button>
-          <button className="btn btn--black">Save as Draft</button>
-          <button className="btn btn--purple">Save & Send</button>
-        </div>
-        <div>
-          <button className="btn btn--white">cancel</button>
-          <button className="btn btn--purple">Save Changes</button>
-        </div>
+        {type === 'create' ? (
+          <div>
+            <button className="btn btn--white">Discard</button>
+            <button className="btn btn--black">Save as Draft</button>
+            <button className="btn btn--purple">Save & Send</button>
+          </div>
+        ) : (
+          <div>
+            <button className="btn btn--white">cancel</button>
+            <button className="btn btn--purple">Save Changes</button>
+          </div>
+        )}
       </section>
     </section>
   );
