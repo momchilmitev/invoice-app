@@ -1,5 +1,6 @@
 import './InvoiceForm.scss';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import DeleteIcon from '../../assets/icons/icon-delete.svg';
 
 const InvoiceForm = ({ type }) => {
@@ -129,13 +130,17 @@ const InvoiceForm = ({ type }) => {
       <section className="form__actions">
         {type === 'create' ? (
           <div>
-            <button className="btn btn--white">Discard</button>
+            <Link to="/home" className="btn btn--white">
+              Discard
+            </Link>
             <button className="btn btn--black">Save as Draft</button>
             <button className="btn btn--purple">Save & Send</button>
           </div>
         ) : (
           <div>
-            <button className="btn btn--white">cancel</button>
+            <Link to="/home" className="btn btn--white">
+              Cancel
+            </Link>
             <button className="btn btn--purple">Save Changes</button>
           </div>
         )}
