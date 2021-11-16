@@ -1,7 +1,38 @@
 import './InvoiceForm.scss';
+import { useState } from 'react';
 import DeleteIcon from '../../assets/icons/icon-delete.svg';
 
 const InvoiceForm = ({ type }) => {
+  const [invoice, setInvoice] = useState({
+    clientAddress: {
+      city: '',
+      country: '',
+      postCode: '',
+      street: '',
+    },
+    clientEmail: '',
+    clientName: '',
+    createdAt: null,
+    description: '',
+    items: [],
+    paymentDue: null,
+    paymentTerms: 1,
+    senderAddress: {
+      city: '',
+      country: '',
+      postCode: '',
+      street: '',
+    },
+    status: '',
+    total: 0,
+  });
+  const [invoiceItem, setInvoiceItem] = useState({
+    name: '',
+    price: 0,
+    quantity: 0,
+    total: 0,
+  });
+
   return (
     <section className="form__wrapper">
       <form className="form__container">
