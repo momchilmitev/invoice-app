@@ -10,6 +10,7 @@ import { getDate } from '@helpers';
 const View = () => {
   const { invoiceId } = useParams();
   const [invoice, setInvoice] = useState(null);
+  const statusClass = `invoice__status invoice__status--${invoice.status}`;
 
   useEffect(() => {
     const fetchInvoice = async () => {
@@ -31,7 +32,7 @@ const View = () => {
       <div className="invoice__header">
         <div className="invoice__info">
           Status
-          <p className="invoice__status">
+          <p className={statusClass}>
             <span></span>
             {invoice.status}
           </p>
