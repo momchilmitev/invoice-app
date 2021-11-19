@@ -10,7 +10,6 @@ import { getDate } from '@helpers';
 const View = () => {
   const { invoiceId } = useParams();
   const [invoice, setInvoice] = useState(null);
-  const statusClass = `invoice__status invoice__status--${invoice.status}`;
 
   useEffect(() => {
     const fetchInvoice = async () => {
@@ -22,7 +21,6 @@ const View = () => {
 
     fetchInvoice();
   }, [invoiceId]);
-  console.log(invoice);
 
   return invoice ? (
     <article className="invoice">
@@ -32,7 +30,7 @@ const View = () => {
       <div className="invoice__header">
         <div className="invoice__info">
           Status
-          <p className={statusClass}>
+          <p className={`invoice__status invoice__status--${invoice.status}`}>
             <span></span>
             {invoice.status}
           </p>

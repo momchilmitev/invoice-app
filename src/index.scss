@@ -83,18 +83,30 @@
     padding: 17px 24px;
     background-color: var(--dark-purple);
     color: #fff;
+
+    &:hover {
+      background-color: #9277ff;
+    }
   }
 
   &--white {
     padding: 17px 24px;
     background-color: #f9fafe;
     color: var(--blue);
+
+    &:hover {
+      background-color: #dfe3fa;
+    }
   }
 
   &--red {
     padding: 17px 24px;
     background-color: var(--red);
     color: #fff;
+
+    &:hover {
+      background-color: #ff9797;
+    }
   }
 
   &--black {
